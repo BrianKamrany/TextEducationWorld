@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<colorTheme id="56281" name="Glittering Blackness" modified="2018-12-24 01:32:35" author="Brian Kamrany">
+    <searchResultIndication color="#4C4C27" />
+    <filteredSearchResultIndication color="#FF00FF" />
+    <occurrenceIndication color="#4C4C27" />
+    <writeOccurrenceIndication color="#FF00FF" />
+    <findScope color="#FF00FF" />
+    <deletionIndication color="#FF00FF" />
+    <sourceHoverBackground color="#FF00FF" />
+    <singleLineComment color="#5DE05C" />
+    <multiLineComment color="#5DE05C" />
+    <commentTaskTag color="#5DE05C" />
+    <javadoc color="#5DE05C" />
+    <javadocLink color="#E8E8E8" />
+    <javadocTag color="#5DE05C" />
+    <javadocKeyword color="#CC9393" />
+    <class color="#E8E8E8" />
+    <interface color="#E8E8E8" />
+    <method color="#E8E8E8" />
+    <methodDeclaration color="#E8E8E8" />
+    <bracket color="#E56D6D" bold="true" />
+    <number color="#E0964B" />
+    <string color="#E0DC43" />
+    <operator color="#E56D6D" bold="true" />
+    <keyword color="#999AE8" />
+    <annotation color="#E56D6D" />
+    <staticMethod color="#E8E8E8" />
+    <localVariable color="#E8E8E8" />
+    <localVariableDeclaration color="#E8E8E8" />
+    <field color="#E8E8E8" />
+    <staticField color="#E8E8E8" />
+    <staticFinalField color="#E8E8E8" />
+    <deprecatedMember color="#E8E8E8" />
+    <enum color="#E8E8E8" />
+    <inheritedMethod color="#E8E8E8" />
+    <abstractMethod color="#E8E8E8" />
+    <parameterVariable color="#E8E8E8" />
+    <typeArgument color="#E8E8E8" />
+    <typeParameter color="#E8E8E8" />
+    <constant color="#E8E8E8" />
+    <background color="#0C141C" />
+    <currentLine color="#2A1B25" />
+    <foreground color="#E8E8E8" />
+    <lineNumber color="#E8E8E8" />
+    <selectionBackground color="#547254" />
+    <selectionForeground color="#E8E8E8" />
+</colorTheme>
