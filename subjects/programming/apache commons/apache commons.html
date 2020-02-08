@@ -442,6 +442,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_text">Text</a>
+<ul class="sectlevel2">
+<li><a href="#_caseutils">CaseUtils</a></li>
+<li><a href="#_stringsubstitutor">StringSubstitutor</a></li>
+<li><a href="#_stringtokenizer">StringTokenizer</a></li>
+<li><a href="#_textstringbuilder">TextStringBuilder</a></li>
+<li><a href="#_wordutils">WordUtils</a></li>
+<li><a href="#_fuzzyscore">FuzzyScore</a></li>
+<li><a href="#_levenshteindistance">LevenshteinDistance</a></li>
+<li><a href="#_longestcommonsubsequence">LongestCommonSubsequence</a></li>
+</ul>
+</li>
 <li><a href="#_lang">Lang</a>
 <ul class="sectlevel2">
 <li><a href="#_arrayutils">ArrayUtils</a></li>
@@ -463,22 +475,193 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_numberutils">NumberUtils</a></li>
 </ul>
 </li>
-<li><a href="#_text">Text</a>
+<li><a href="#_io">IO</a>
 <ul class="sectlevel2">
-<li><a href="#_caseutils">CaseUtils</a></li>
-<li><a href="#_stringsubstitutor">StringSubstitutor</a></li>
-<li><a href="#_stringtokenizer">StringTokenizer</a></li>
-<li><a href="#_textstringbuilder">TextStringBuilder</a></li>
-<li><a href="#_wordutils">WordUtils</a></li>
-<li><a href="#_fuzzyscore">FuzzyScore</a></li>
-<li><a href="#_levenshteindistance">LevenshteinDistance</a></li>
-<li><a href="#_longestcommonsubsequence">LongestCommonSubsequence</a></li>
+<li><a href="#_filenameutils">FilenameUtils</a></li>
+<li><a href="#_fileutils">FileUtils</a></li>
+<li><a href="#_autocloseinputstream">AutoCloseInputStream</a></li>
+<li><a href="#_boundedinputstream">BoundedInputStream</a></li>
+</ul>
+</li>
+<li><a href="#_collections">Collections</a>
+<ul class="sectlevel2">
+<li><a href="#_collectionutils">CollectionUtils</a></li>
+<li><a href="#_listutils">ListUtils</a></li>
+<li><a href="#_maputils">MapUtils</a></li>
+<li><a href="#_setutils">SetUtils</a></li>
+<li><a href="#_hashbag">HashBag</a></li>
+<li><a href="#_dualhashbidimap">DualHashBidiMap</a></li>
+<li><a href="#_lrumap">LRUMap</a></li>
+<li><a href="#_hashsetvaluedhashmap">HashSetValuedHashMap</a></li>
+<li><a href="#_hashmultiset">HashMultiSet</a></li>
+<li><a href="#_circularfifoqueue">CircularFifoQueue</a></li>
+<li><a href="#_patriciatrie">PatriciaTrie</a></li>
+<li><a href="#_comparatorutils">ComparatorUtils</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_text">Text</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;
+    &lt;artifactId&gt;commons-text&lt;/artifactId&gt;
+    &lt;version&gt;1.8&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_caseutils">CaseUtils</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">static toCamelCase(String str, boolean capitalizeFirstLetter, char&#8230;&#8203; delimiters)</dt>
+<dd>
+<p>Converts all the delimiter separated words in a String into camelCase, that is each word is made up of a titlecase character and then a series of lowercase characters.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stringsubstitutor">StringSubstitutor</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">static replace(Object source, Map&lt;String,V&gt; valueMap)</dt>
+<dd>
+<p>Replaces all the occurrences of variables in the given source object with their matching values from the map.</p>
+</dd>
+<dt class="hdlist1">static replace(Object source, Properties valueProperties)</dt>
+<dd>
+<p>Replaces all the occurrences of variables in the given source object with their matching values from the properties.</p>
+</dd>
+<dt class="hdlist1">static replaceSystemProperties(Object source)</dt>
+<dd>
+<p>Replaces all the occurrences of variables in the given source object with their matching values from the system properties.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Map valuesMap = HashMap();
+valuesMap.put("animal", "quick brown fox");
+valuesMap.put("target", "lazy dog");
+String templateString = "The ${animal} jumped over the ${target}.";
+StringSubstitutor sub = new StringSubstitutor(valuesMap);
+String resolvedString = sub.replace(templateString);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">StringSubstitutor.replaceSystemProperties("You are running with java.version = ${java.version} and os.name = ${os.name}.");</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stringtokenizer">StringTokenizer</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">static getCSVInstance(String input)</dt>
+<dd>
+<p>Gets a new tokenizer instance which parses Comma Separated Value strings initializing it with the given input.</p>
+</dd>
+<dt class="hdlist1">hasNext()</dt>
+<dd>
+<p>Checks whether there are any more tokens.</p>
+</dd>
+<dt class="hdlist1">next()</dt>
+<dd>
+<p>Gets the next token.</p>
+</dd>
+<dt class="hdlist1">size()</dt>
+<dd>
+<p>Gets the number of tokens found in the String.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_textstringbuilder">TextStringBuilder</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">append(boolean value)</dt>
+<dd>
+<p>Appends a boolean value to the string builder.</p>
+</dd>
+<dt class="hdlist1">appendAll(Iterable&lt;?&gt; iterable)</dt>
+<dd>
+<p>Appends each item in an iterable to the builder without any separators.</p>
+</dd>
+<dt class="hdlist1">appendNewLine()</dt>
+<dd>
+<p>Appends the new line string to this string builder.</p>
+</dd>
+<dt class="hdlist1">trim()</dt>
+<dd>
+<p>Trims the builder by removing characters less than or equal to a space from the beginning and end.</p>
+</dd>
+<dt class="hdlist1">toString()</dt>
+<dd>
+<p>Gets a String version of the string builder, creating a new instance each time the method is called.</p>
+</dd>
+<dt class="hdlist1">toStringBuilder()</dt>
+<dd>
+<p>Gets a StringBuilder version of the string builder, creating a new instance each time the method is called.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wordutils">WordUtils</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">static abbreviate(String str, int lower, int upper, String appendToEnd)</dt>
+<dd>
+<p>Abbreviates the words nicely.</p>
+</dd>
+<dt class="hdlist1">static capitalize(String str)</dt>
+<dd>
+<p>Capitalizes all the whitespace separated words in a String.</p>
+</dd>
+<dt class="hdlist1">static capitalizeFully(String str)</dt>
+<dd>
+<p>Converts all the whitespace separated words in a String into capitalized words, that is each word is made up of a titlecase character and then a series of lowercase characters.</p>
+</dd>
+<dt class="hdlist1">static containsAllWords(CharSequence word, CharSequence&#8230;&#8203; words)</dt>
+<dd>
+<p>Checks if the String contains all words in the given array.</p>
+</dd>
+<dt class="hdlist1">static initials(String str)</dt>
+<dd>
+<p>Extracts the initial characters from each word in the String.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fuzzyscore">FuzzyScore</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_levenshteindistance">LevenshteinDistance</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_longestcommonsubsequence">LongestCommonSubsequence</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">longestCommonSubsequence(CharSequence left, CharSequence right)</dt>
+<dd>
+<p>Computes the longest common subsequence between the two CharSequence&#8217;s passed as input.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_lang">Lang</h2>
 <div class="sectionbody">
@@ -1037,158 +1220,264 @@ return new HashCodeBuilder(17, 37).
 </div>
 </div>
 <div class="sect1">
-<h2 id="_text">Text</h2>
+<h2 id="_io">IO</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+    &lt;groupId&gt;commons-io&lt;/groupId&gt;
+    &lt;artifactId&gt;commons-io&lt;/artifactId&gt;
+    &lt;version&gt;2.6&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_filenameutils">FilenameUtils</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">static getBaseName(String filename)</dt>
+<dd>
+<p>Gets the base name, minus the full path and extension, from a full filename.</p>
+</dd>
+<dt class="hdlist1">static getExtension(String filename)</dt>
+<dd>
+<p>Gets the extension of a filename.</p>
+</dd>
+<dt class="hdlist1">static getPrefix(String filename)</dt>
+<dd>
+<p>Gets the prefix from a full filename, such as C:/ or ~/.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fileutils">FileUtils</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">static contentEquals(File file1, File file2)</dt>
+<dd>
+<p>Compares the contents of two files to determine if they are equal or not.</p>
+</dd>
+<dt class="hdlist1">static copyDirectory(File srcDir, File destDir)</dt>
+<dd>
+<p>Copies a whole directory to a new location preserving the file dates.</p>
+</dd>
+<dt class="hdlist1">static copyFile(File srcFile, File destFile)</dt>
+<dd>
+<p>Copies a file to a new location preserving the file date.</p>
+</dd>
+<dt class="hdlist1">static copyInputStreamToFile(InputStream source, File destination)</dt>
+<dd>
+<p>Copies bytes from an InputStream source to a file destination.</p>
+</dd>
+<dt class="hdlist1">static copyToDirectory(File src, File destDir)</dt>
+<dd>
+<p>Copies a file or directory to within another directory preserving the file dates.</p>
+</dd>
+<dt class="hdlist1">static deleteDirectory(File directory)</dt>
+<dd>
+<p>Deletes a directory recursively.</p>
+</dd>
+<dt class="hdlist1">static listFiles(File directory, IOFileFilter fileFilter, IOFileFilter dirFilter)</dt>
+<dd>
+<p>Finds files within a given directory (and optionally its subdirectories).</p>
+</dd>
+<dt class="hdlist1">static readFileToString(File file, Charset encoding)</dt>
+<dd>
+<p>Reads the contents of a file into a String.</p>
+</dd>
+<dt class="hdlist1">static readLines(File file, Charset encoding)</dt>
+<dd>
+<p>Reads the contents of a file line by line to a List of Strings.</p>
+</dd>
+<dt class="hdlist1">static writeLines(File file, Collection&lt;?&gt; lines)</dt>
+<dd>
+<p>Writes the toString() value of each item in a collection to the specified File line by line.</p>
+</dd>
+<dt class="hdlist1">static writeStringToFile(File file, String data, Charset encoding)</dt>
+<dd>
+<p>Writes a String to a file creating the file if it does not exist.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_autocloseinputstream">AutoCloseInputStream</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_boundedinputstream">BoundedInputStream</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_collections">Collections</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
     &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;
-    &lt;artifactId&gt;commons-text&lt;/artifactId&gt;
-    &lt;version&gt;1.8&lt;/version&gt;
+    &lt;artifactId&gt;commons-collections4&lt;/artifactId&gt;
+    &lt;version&gt;4.4&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_caseutils">CaseUtils</h3>
+<h3 id="_collectionutils">CollectionUtils</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">static toCamelCase(String str, boolean capitalizeFirstLetter, char&#8230;&#8203; delimiters)</dt>
+<dt class="hdlist1">static addIgnoreNull(Collection&lt;T&gt; collection, T object)</dt>
 <dd>
-<p>Converts all the delimiter separated words in a String into camelCase, that is each word is made up of a titlecase character and then a series of lowercase characters.</p>
+<p>Adds an element to the collection unless the element is null.</p>
+</dd>
+<dt class="hdlist1">static emptyIfNull(Collection&lt;T&gt; collection)</dt>
+<dd>
+<p>Returns an immutable empty collection if the argument is null, or the argument itself otherwise.</p>
+</dd>
+<dt class="hdlist1">static getCardinalityMap(Iterable&lt;? extends O&gt; coll)</dt>
+<dd>
+<p>Returns a Map mapping each unique element in the given Collection to an Integer representing the number of occurrences of that element in the Collection.</p>
+</dd>
+<dt class="hdlist1">static isEmpty(Collection&lt;?&gt; coll)</dt>
+<dd>
+<p>Null-safe check if the specified collection is empty.</p>
+</dd>
+<dt class="hdlist1">static isEqualCollection(Collection&lt;?&gt; a, Collection&lt;?&gt; b)</dt>
+<dd>
+<p>Returns true iff the given Collections contain exactly the same elements with exactly the same cardinalities.</p>
+</dd>
+<dt class="hdlist1">static isNotEmpty(Collection&lt;?&gt; coll)</dt>
+<dd>
+<p>Null-safe check if the specified collection is not empty.</p>
+</dd>
+<dt class="hdlist1">static isSubCollection(Collection&lt;?&gt; a, Collection&lt;?&gt; b)</dt>
+<dd>
+<p>Returns true iff a is a sub-collection of b, that is, iff the cardinality of e in a is less than or equal to the cardinality of e in b, for each element e in a.</p>
+</dd>
+<dt class="hdlist1">static permutations(Collection&lt;E&gt; collection)</dt>
+<dd>
+<p>Returns a Collection of all the permutations of the input collection.</p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_stringsubstitutor">StringSubstitutor</h3>
+<h3 id="_listutils">ListUtils</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">static replace(Object source, Map&lt;String,V&gt; valueMap)</dt>
+<dt class="hdlist1">static defaultIfNull(List&lt;T&gt; list, List&lt;T&gt; defaultList)</dt>
 <dd>
-<p>Replaces all the occurrences of variables in the given source object with their matching values from the map.</p>
+<p>Returns either the passed in list, or if the list is null, the value of defaultList.</p>
 </dd>
-<dt class="hdlist1">static replace(Object source, Properties valueProperties)</dt>
+<dt class="hdlist1">static emptyIfNull(List&lt;T&gt; list)</dt>
 <dd>
-<p>Replaces all the occurrences of variables in the given source object with their matching values from the properties.</p>
+<p>Returns an immutable empty list if the argument is null, or the argument itself otherwise.</p>
 </dd>
-<dt class="hdlist1">static replaceSystemProperties(Object source)</dt>
+<dt class="hdlist1">static intersection(List&lt;? extends E&gt; list1, List&lt;? extends E&gt; list2)</dt>
 <dd>
-<p>Replaces all the occurrences of variables in the given source object with their matching values from the system properties.</p>
+<p>Returns a new list containing all elements that are contained in both given lists.</p>
 </dd>
-</dl>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Map valuesMap = HashMap();
-valuesMap.put("animal", "quick brown fox");
-valuesMap.put("target", "lazy dog");
-String templateString = "The ${animal} jumped over the ${target}.";
-StringSubstitutor sub = new StringSubstitutor(valuesMap);
-String resolvedString = sub.replace(templateString);</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">StringSubstitutor.replaceSystemProperties("You are running with java.version = ${java.version} and os.name = ${os.name}.");</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_stringtokenizer">StringTokenizer</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">static getCSVInstance(String input)</dt>
+<dt class="hdlist1">static isEqualList(Collection&lt;?&gt; list1, Collection&lt;?&gt; list2)</dt>
 <dd>
-<p>Gets a new tokenizer instance which parses Comma Separated Value strings initializing it with the given input.</p>
-</dd>
-<dt class="hdlist1">hasNext()</dt>
-<dd>
-<p>Checks whether there are any more tokens.</p>
-</dd>
-<dt class="hdlist1">next()</dt>
-<dd>
-<p>Gets the next token.</p>
-</dd>
-<dt class="hdlist1">size()</dt>
-<dd>
-<p>Gets the number of tokens found in the String.</p>
+<p>Tests two lists for value-equality as per the equality contract in List.equals(java.lang.Object).</p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_textstringbuilder">TextStringBuilder</h3>
+<h3 id="_maputils">MapUtils</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">append(boolean value)</dt>
+<dt class="hdlist1">static emptyIfNull(Map&lt;K,V&gt; map)</dt>
 <dd>
-<p>Appends a boolean value to the string builder.</p>
+<p>Returns an immutable empty map if the argument is null, or the argument itself otherwise.</p>
 </dd>
-<dt class="hdlist1">appendAll(Iterable&lt;?&gt; iterable)</dt>
+<dt class="hdlist1">static isEmpty(Map&lt;?,?&gt; map)</dt>
 <dd>
-<p>Appends each item in an iterable to the builder without any separators.</p>
+<p>Null-safe check if the specified map is empty.</p>
 </dd>
-<dt class="hdlist1">appendNewLine()</dt>
+<dt class="hdlist1">static isNotEmpty(Map&lt;?,?&gt; map)</dt>
 <dd>
-<p>Appends the new line string to this string builder.</p>
+<p>Null-safe check if the specified map is not empty.</p>
 </dd>
-<dt class="hdlist1">trim()</dt>
+<dt class="hdlist1">static safeAddToMap(Map&lt;? super K,Object&gt; map, K key, Object value)</dt>
 <dd>
-<p>Trims the builder by removing characters less than or equal to a space from the beginning and end.</p>
+<p>Protects against adding null values to a map.</p>
 </dd>
-<dt class="hdlist1">toString()</dt>
+<dt class="hdlist1">static toProperties(Map&lt;K,V&gt; map)</dt>
 <dd>
-<p>Gets a String version of the string builder, creating a new instance each time the method is called.</p>
-</dd>
-<dt class="hdlist1">toStringBuilder()</dt>
-<dd>
-<p>Gets a StringBuilder version of the string builder, creating a new instance each time the method is called.</p>
+<p>Gets a new Properties object initialised with the values from a Map.</p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wordutils">WordUtils</h3>
+<h3 id="_setutils">SetUtils</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">static abbreviate(String str, int lower, int upper, String appendToEnd)</dt>
+<dt class="hdlist1">static difference(Set&lt;? extends E&gt; a, Set&lt;? extends E&gt; b)</dt>
 <dd>
-<p>Abbreviates the words nicely.</p>
+<p>Returns a unmodifiable view containing the difference of the given Sets, denoted by a \ b (or a - b).</p>
 </dd>
-<dt class="hdlist1">static capitalize(String str)</dt>
+<dt class="hdlist1">static disjunction(Set&lt;? extends E&gt; a, Set&lt;? extends E&gt; b)</dt>
 <dd>
-<p>Capitalizes all the whitespace separated words in a String.</p>
+<p>Returns a unmodifiable view of the symmetric difference of the given Sets.</p>
 </dd>
-<dt class="hdlist1">static capitalizeFully(String str)</dt>
+<dt class="hdlist1">static emptyIfNull(Set&lt;T&gt; set)</dt>
 <dd>
-<p>Converts all the whitespace separated words in a String into capitalized words, that is each word is made up of a titlecase character and then a series of lowercase characters.</p>
+<p>Returns an immutable empty set if the argument is null, or the argument itself otherwise.</p>
 </dd>
-<dt class="hdlist1">static containsAllWords(CharSequence word, CharSequence&#8230;&#8203; words)</dt>
+<dt class="hdlist1">static hashSet(E&#8230;&#8203; items)</dt>
 <dd>
-<p>Checks if the String contains all words in the given array.</p>
+<p>Creates a set from the given items.</p>
 </dd>
-<dt class="hdlist1">static initials(String str)</dt>
+<dt class="hdlist1">static intersection(Set&lt;? extends E&gt; a, Set&lt;? extends E&gt; b)</dt>
 <dd>
-<p>Extracts the initial characters from each word in the String.</p>
+<p>Returns a unmodifiable view of the intersection of the given Sets.</p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_fuzzyscore">FuzzyScore</h3>
+<h3 id="_hashbag">HashBag</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_levenshteindistance">LevenshteinDistance</h3>
+<h3 id="_dualhashbidimap">DualHashBidiMap</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_longestcommonsubsequence">LongestCommonSubsequence</h3>
+<h3 id="_lrumap">LRUMap</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_hashsetvaluedhashmap">HashSetValuedHashMap</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_hashmultiset">HashMultiSet</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_circularfifoqueue">CircularFifoQueue</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_patriciatrie">PatriciaTrie</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_comparatorutils">ComparatorUtils</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">longestCommonSubsequence(CharSequence left, CharSequence right)</dt>
+<dt class="hdlist1">static max(E o1, E o2, Comparator&lt;E&gt; comparator)</dt>
 <dd>
-<p>Computes the longest common subsequence between the two CharSequence&#8217;s passed as input.</p>
+<p>Returns the larger of the given objects according to the given comparator, returning the second object if the comparator returns equal.</p>
+</dd>
+<dt class="hdlist1">static min(E o1, E o2, Comparator&lt;E&gt; comparator)</dt>
+<dd>
+<p>Returns the smaller of the given objects according to the given comparator, returning the second object if the comparator returns equal.</p>
 </dd>
 </dl>
 </div>
